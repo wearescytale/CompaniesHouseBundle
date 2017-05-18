@@ -1,5 +1,5 @@
 {
-  "name": "wearescytale/CompaniesHouseBundle",
+  "name": "wearescytale/companies-house-bundle",
   "license": "MIT",
   "description": "Symfony bundle that integrates the comapnies house rest api",
   "keywords": ["Companies House", "Symfony", "bundle"],
