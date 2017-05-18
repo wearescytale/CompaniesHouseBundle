@@ -3,3 +3,15 @@ services:
         class: Wearescytale\CompaniesHouseBundle\Service\CompaniesHouseClient
         arguments:
             - '%wearescytale_companies_house.api_key%'
+            - '@wearescytale_companies_house.serializer'
+
+    wearescytale_companies_house.company_profile.denormalizer:
+        class: Wearescytale\CompaniesHouseBundle\Serializer\Normalizer\CompanyProfileDenormalizer
+
+    wearescytale_companies_house.serializer:
+        class: Symfony\Component\Serializer\Serializer
+        arguments:
+            -
+                - '@wearescytale_companies_house.company_profile.denormalizer'
+            -
+                - '@serializer.encoder.json'

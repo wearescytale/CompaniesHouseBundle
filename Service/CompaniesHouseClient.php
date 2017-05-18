@@ -5,6 +5,7 @@ namespace Wearescytale\CompaniesHouseBundle\Service;
 use Exception;
 use GuzzleHttp\Client;
 
+use Symfony\Component\Serializer\Serializer;
 use Wearescytale\CompaniesHouseBundle\Model\CompanyProfile;
 
 /**
@@ -23,13 +24,19 @@ class CompaniesHouseClient
     private $apiKey;
 
     /**
+     * @var Serializer
+     */
+    private $serializer;
+
+    /**
      * CompaniesHouseClient constructor.
      *
      * @param string $apiKey
      */
-    public function __construct(string $apiKey)
+    public function __construct(string $apiKey, Serializer $serializer)
     {
-        $this->apiKey = $apiKey;
+        $this->apiKey     = $apiKey;
+        $this->serializer = $serializer;
     }
 
     /**
@@ -52,7 +59,11 @@ class CompaniesHouseClient
             throw new Exception("An error occured when getting the company profile");
         }
 
-        return new CompanyProfile();
+        return $this->serializer->deserialize(
+            $response->getBody()->getContents(),
+            CompanyProfile::class,
+            'json'
+        );
     }
 
     /**
