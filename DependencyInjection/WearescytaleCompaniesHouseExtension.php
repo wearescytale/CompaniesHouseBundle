@@ -24,5 +24,15 @@ class WearescytaleCompaniesHouseExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        // Configure bundle parameters from configuration
+        $baseName = "wearescytale_companies_house";
+
+        // Configure api key parameter
+        if (isset($config['api_key'])) {
+
+            $paramName = $baseName . ".api_key";
+            $container->setParameter($paramName, $config['api_key']);
+        }
     }
 }
