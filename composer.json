@@ -1,0 +1,28 @@
+{
+  "name": "wearescytale/CompaniesHouseBundle",
+  "license": "MIT",
+  "description": "Symfony bundle that integrates the comapnies house rest api",
+  "keywords": ["Companies House", "Symfony", "bundle"],
+  "type": "symfony-bundle",
+  "homepage": "https://github.com/wearescytale/CompaniesHouseBundle",
+  "authors": [
+    {
+      "name": "Eduardo Conceição",
+      "email": "eduardo.conceicao@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Wearescytale\\Bundle\\CompaniesHouseBundle\\": ""
+    }
+  },
+  "require": {
+    "php": ">=5.6.0",
+    "symfony/framework-bundle": ">=2.3",
+    "guzzlehttp/guzzle": "6.2.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*"
+  },
+  "minimum-stability": "stable"
+}
