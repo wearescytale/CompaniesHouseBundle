@@ -18,6 +18,21 @@ class CompaniesHouseClient
     const API_BASE_URL = 'https://api.companieshouse.gov.uk/';
 
     /**
+     * @var string
+     */
+    private $apiKey;
+
+    /**
+     * CompaniesHouseClient constructor.
+     *
+     * @param string $apiKey
+     */
+    public function __construct(string $apiKey)
+    {
+        $this->apiKey = $apiKey;
+    }
+
+    /**
      * Get the company profile given a company number
      *
      * https://developer.companieshouse.gov.uk/api/docs/company/company_number/company_number.html
@@ -37,10 +52,7 @@ class CompaniesHouseClient
             throw new Exception("An error occured when getting the company profile");
         }
 
-        //return $this->deserializer
-        //    ->createCompanyProfile($response->getBody()->getContents());
-
-        $response->getBody()->getContents();
+        return new CompanyProfile();
     }
 
     /**
@@ -54,6 +66,11 @@ class CompaniesHouseClient
             $baseUri = self::API_BASE_URL;
         }
 
-        return new Client(['base_uri' => $baseUri]);
+        $config = array(
+            'base_uri' => $baseUri,
+            'auth'     => array($this->apiKey, '')
+        );
+
+        return new Client($config);
     }
 }

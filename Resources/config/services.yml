@@ -1,4 +1,5 @@
 services:
-#    wearescytale_companies_house.example:
-#        class: Wearescytale\CompaniesHouseBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    wearescytale_companies_house.client:
+        class: Wearescytale\CompaniesHouseBundle\Service\CompaniesHouseClient
+        arguments:
+            - '%wearescytale_companies_house.api_key%'
