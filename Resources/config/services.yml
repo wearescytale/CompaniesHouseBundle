@@ -1,0 +1,4 @@
+services:
+#    wearescytale_companies_house.example:
+#        class: Wearescytale\CompaniesHouseBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
