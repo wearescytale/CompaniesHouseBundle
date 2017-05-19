@@ -25,6 +25,11 @@ class CompanyProfile
     private $type;
 
     /**
+     * @var Address
+     */
+    private $registeredOfficeAddress;
+
+    /**
      * @var string
      */
     private $jurisdiction;
@@ -53,6 +58,35 @@ class CompanyProfile
      * @var bool
      */
     private $registeredOfficeIsInDispute;
+
+    /**
+     * @var array
+     */
+    private $accounts;
+
+    /**
+     * @var array
+     */
+    private $links;
+
+    /**
+     * @var array
+     */
+    private $sicCodes;
+
+    /**
+     * @var string
+     */
+    private $etag;
+
+    /**
+     * CompanyProfile constructor.
+     */
+    public function __construct()
+    {
+        $this->setLinks(array());
+        $this->setSicCodes(array());
+    }
 
     /**
      * @return string
@@ -230,6 +264,106 @@ class CompanyProfile
     public function setRegisteredOfficeIsInDispute(bool $registeredOfficeIsInDispute): CompanyProfile
     {
         $this->registeredOfficeIsInDispute = $registeredOfficeIsInDispute;
+
+        return $this;
+    }
+
+    /**
+     * @return Address
+     */
+    public function getRegisteredOfficeAddress(): Address
+    {
+        return $this->registeredOfficeAddress;
+    }
+
+    /**
+     * @param Address $registeredOfficeAddress
+     *
+     * @return CompanyProfile
+     */
+    public function setRegisteredOfficeAddress(Address $registeredOfficeAddress): CompanyProfile
+    {
+        $this->registeredOfficeAddress = $registeredOfficeAddress;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAccounts(): array
+    {
+        return $this->accounts;
+    }
+
+    /**
+     * @param array $accounts
+     *
+     * @return CompanyProfile
+     */
+    public function setAccounts(array $accounts): CompanyProfile
+    {
+        $this->accounts = $accounts;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLinks(): array
+    {
+        return $this->links;
+    }
+
+    /**
+     * @param array $links
+     *
+     * @return CompanyProfile
+     */
+    public function setLinks(array $links)
+    {
+        $this->links = $links;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSicCodes(): array
+    {
+        return $this->sicCodes;
+    }
+
+    /**
+     * @param array $sicCodes
+     *
+     * @return CompanyProfile
+     */
+    public function setSicCodes(array $sicCodes): CompanyProfile
+    {
+        $this->sicCodes = $sicCodes;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEtag(): ?string
+    {
+        return $this->etag;
+    }
+
+    /**
+     * @param string $etag
+     *
+     * @return CompanyProfile
+     */
+    public function setEtag(string $etag)
+    {
+        $this->etag = $etag;
 
         return $this;
     }
