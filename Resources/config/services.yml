@@ -22,11 +22,15 @@ services:
     wearescytale_companies_house.normalizer.datetime:
         class: 'Wearescytale\CompaniesHouseBundle\Serializer\Normalizer\DateTimeNormalizer'
 
+    wearescytale_companies_house.normalizer.array:
+        class: 'Symfony\Component\Serializer\Normalizer\ArrayDenormalizer'
+
     wearescytale_companies_house.serializer:
         class: Symfony\Component\Serializer\Serializer
         arguments:
             -
                 - '@wearescytale_companies_house.normalizer.datetime'
+                - '@wearescytale_companies_house.normalizer.array'
                 - '@wearescytale_companies_house.normalizer.object'
             -
                 - '@serializer.encoder.json'

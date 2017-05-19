@@ -67,6 +67,49 @@ class CompaniesHouseClient
     }
 
     /**
+     * Search for a companies by text search
+     *
+     * https://developer.companieshouse.gov.uk/api/docs/search/companies/companysearch.html
+     *
+     * @param string $query
+     * @param int    $itemsPerPage
+     * @param int    $startIndex
+     *
+     * @return array
+     * @throws Exception
+     */
+    public function companySearch(string $query, $itemsPerPage = null, $startIndex = null)
+    {
+        $client   = $this->createClient();
+        $response = $client->get(
+            "search/companies",
+            array(
+                'query' => array(
+                    'q'              => $query,
+                    'items_per_page' => $itemsPerPage,
+                    'start_index'    => $startIndex,
+                )
+            )
+        );
+
+        if ($response->getStatusCode() !== 200) {
+            throw new Exception("An error occured when searching for companies");
+        }
+
+        $data = json_decode($response->getBody()->getContents(), true);
+
+        if (!$data || !isset($data['items'])) {
+            throw new Exception("An error occured when searching for companies");
+        }
+
+        return $this->serializer->deserialize(
+            json_encode($data['items']),
+            'Wearescytale\CompaniesHouseBundle\Model\CompanySearch[]',
+            'json'
+        );
+    }
+
+    /**
      * @param string $baseUri
      *
      * @return Client

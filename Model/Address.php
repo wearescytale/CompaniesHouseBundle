@@ -33,6 +33,11 @@ class Address
     private $country;
 
     /**
+     * @var string
+     */
+    private $premises;
+
+    /**
      * @return string
      */
     public function getAddressLine1(): string
@@ -128,6 +133,26 @@ class Address
     public function setCountry(string $country): Address
     {
         $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPremises()
+    {
+        return $this->premises;
+    }
+
+    /**
+     * @param string $premises
+     *
+     * @return Address
+     */
+    public function setPremises($premises)
+    {
+        $this->premises = $premises;
 
         return $this;
     }
