@@ -4,8 +4,8 @@ namespace Wearescytale\CompaniesHouseBundle\Service;
 
 use Exception;
 use GuzzleHttp\Client;
-
 use Symfony\Component\Serializer\Serializer;
+use Wearescytale\CompaniesHouseBundle\Exception\CompaniesHouseException;
 use Wearescytale\CompaniesHouseBundle\Model\CompanyProfile;
 
 /**
@@ -52,11 +52,19 @@ class CompaniesHouseClient
     public function getCompanyProfile(string $companyNumber)
     {
         $client   = $this->createClient();
-        $response = $client->get("company/$companyNumber");
+
+        try {
+            $response = $client->get("company/$companyNumber");
+        } catch (Exception $exception) {
+
+            throw new CompaniesHouseException(
+                "Company profile not found"
+            );
+        }
 
         if ($response->getStatusCode() !== 200) {
 
-            throw new Exception("An error occured when getting the company profile");
+            throw new CompaniesHouseException("An error occured when getting the company profile");
         }
 
         return $this->serializer->deserialize(
@@ -80,26 +88,40 @@ class CompaniesHouseClient
      */
     public function companySearch(string $query, $itemsPerPage = null, $startIndex = null)
     {
-        $client   = $this->createClient();
-        $response = $client->get(
-            "search/companies",
-            array(
-                'query' => array(
-                    'q'              => $query,
-                    'items_per_page' => $itemsPerPage,
-                    'start_index'    => $startIndex,
+        $client = $this->createClient();
+
+        try {
+            $response = $client->get(
+                "search/companies",
+                array(
+                    'query' => array(
+                        'q'              => $query,
+                        'items_per_page' => $itemsPerPage,
+                        'start_index'    => $startIndex,
+                    )
                 )
-            )
-        );
+            );
+        } catch (Exception $exception) {
+
+            throw new CompaniesHouseException(
+                "An error occured when searching for companies"
+            );
+        }
 
         if ($response->getStatusCode() !== 200) {
-            throw new Exception("An error occured when searching for companies");
+
+            throw new CompaniesHouseException(
+                "An error occured when searching for companies"
+            );
         }
 
         $data = json_decode($response->getBody()->getContents(), true);
 
         if (!$data || !isset($data['items'])) {
-            throw new Exception("An error occured when searching for companies");
+
+            throw new CompaniesHouseException(
+                "An error occured when searching for companies"
+            );
         }
 
         return $this->serializer->deserialize(
