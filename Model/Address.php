@@ -55,6 +55,22 @@ class Address
     /**
      * @return string
      */
+    public function getFullAddress(): string
+    {
+        return sprintf(
+            "%s%s%s, %s%s%s",
+            $this->getPremises() ? $this->getPremises() . ' ' : '',
+            $this->getAddressLine1(),
+            $this->getAddressLine2() ? ', ' . $this->getAddressLine2() : '',
+            $this->getLocality(),
+            $this->getCountry() ? ', ' . $this->getCountry() : '',
+            $this->getPostalCode() ? ' ' . $this->getPostalCode() : ''
+        );
+    }
+
+    /**
+     * @return string
+     */
     public function getAddressLine1(): string
     {
         return $this->addressLine1;
