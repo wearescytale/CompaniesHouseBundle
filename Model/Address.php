@@ -38,6 +38,21 @@ class Address
     private $premises;
 
     /**
+     * @var string
+     */
+    private $careOf;
+
+    /**
+     * @var string
+     */
+    private $poBox;
+
+    /**
+     * @var string
+     */
+    private $region;
+
+    /**
      * @return string
      */
     public function getAddressLine1(): string
@@ -153,6 +168,66 @@ class Address
     public function setPremises($premises)
     {
         $this->premises = $premises;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCareOf(): string
+    {
+        return $this->careOf;
+    }
+
+    /**
+     * @param string $careOf
+     *
+     * @return Address
+     */
+    public function setCareOf(string $careOf): Address
+    {
+        $this->careOf = $careOf;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPoBox(): string
+    {
+        return $this->poBox;
+    }
+
+    /**
+     * @param string $poBox
+     *
+     * @return Address
+     */
+    public function setPoBox(string $poBox): Address
+    {
+        $this->poBox = $poBox;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRegion(): string
+    {
+        return $this->region;
+    }
+
+    /**
+     * @param string $region
+     *
+     * @return Address
+     */
+    public function setRegion(string $region): Address
+    {
+        $this->region = $region;
 
         return $this;
     }

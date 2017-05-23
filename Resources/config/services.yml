@@ -11,13 +11,20 @@ services:
     wearescytale_companies_house.name_converter.camel_case_to_snake_case:
         class: 'Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter'
 
+# This only works correctly with the property type extractor on symfony 3.1+
+#    wearescytale_companies_house.normalizer.object:
+#        class: 'Symfony\Component\Serializer\Normalizer\ObjectNormalizer'
+#        arguments:
+#            - null
+#            - '@wearescytale_companies_house.name_converter.camel_case_to_snake_case'
+#            - null
+#            - '@wearescytale_companies_house.extractor.reflection'
+
     wearescytale_companies_house.normalizer.object:
-        class: 'Symfony\Component\Serializer\Normalizer\ObjectNormalizer'
+        class: 'Wearescytale\CompaniesHouseBundle\Serializer\Normalizer\ObjectNormalizer'
         arguments:
             - null
             - '@wearescytale_companies_house.name_converter.camel_case_to_snake_case'
-            - null
-            - '@wearescytale_companies_house.extractor.reflection'
 
     wearescytale_companies_house.normalizer.datetime:
         class: 'Wearescytale\CompaniesHouseBundle\Serializer\Normalizer\DateTimeNormalizer'
