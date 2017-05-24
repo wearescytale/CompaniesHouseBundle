@@ -250,7 +250,12 @@ class ObjectNormalizer extends AbstractNormalizer
         return array(
             'registeredOfficeAddress' => Address::class,
             'address'                 => Address::class,
-            'dateOfCreation'          => \DateTime::class
+            'dateOfCreation'          => \DateTime::class,
+            'actionDate'              => \DateTime::class,
+            'date'                    => \DateTime::class,
+            //'createdAt'               => \DateTime::class,
+            'updatedAt'               => \DateTime::class,
+            'significantDate'         => \DateTime::class,
         );
     }
 }
