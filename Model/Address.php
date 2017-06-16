@@ -60,9 +60,9 @@ class Address
         return sprintf(
             "%s%s%s, %s%s%s",
             $this->getPremises() ? $this->getPremises() . ' ' : '',
-            $this->getAddressLine1(),
+            $this->getAddressLine1() ?: '',
             $this->getAddressLine2() ? ', ' . $this->getAddressLine2() : '',
-            $this->getLocality(),
+            $this->getLocality() ?: '',
             $this->getCountry() ? ', ' . $this->getCountry() : '',
             $this->getPostalCode() ? ' ' . $this->getPostalCode() : ''
         );
@@ -71,7 +71,7 @@ class Address
     /**
      * @return string
      */
-    public function getAddressLine1(): string
+    public function getAddressLine1(): ?string
     {
         return $this->addressLine1;
     }
@@ -91,7 +91,7 @@ class Address
     /**
      * @return string
      */
-    public function getAddressLine2(): string
+    public function getAddressLine2(): ?string
     {
         return $this->addressLine2;
     }
@@ -111,7 +111,7 @@ class Address
     /**
      * @return string
      */
-    public function getPostalCode(): string
+    public function getPostalCode(): ?string
     {
         return $this->postalCode;
     }
@@ -131,7 +131,7 @@ class Address
     /**
      * @return string
      */
-    public function getLocality(): string
+    public function getLocality(): ?string
     {
         return $this->locality;
     }
@@ -151,7 +151,7 @@ class Address
     /**
      * @return string
      */
-    public function getCountry(): string
+    public function getCountry(): ?string
     {
         return $this->country;
     }
@@ -191,7 +191,7 @@ class Address
     /**
      * @return string
      */
-    public function getCareOf(): string
+    public function getCareOf(): ?string
     {
         return $this->careOf;
     }
@@ -211,7 +211,7 @@ class Address
     /**
      * @return string
      */
-    public function getPoBox(): string
+    public function getPoBox(): ?string
     {
         return $this->poBox;
     }
@@ -231,7 +231,7 @@ class Address
     /**
      * @return string
      */
-    public function getRegion(): string
+    public function getRegion(): ?string
     {
         return $this->region;
     }
