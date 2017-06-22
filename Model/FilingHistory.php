@@ -162,7 +162,7 @@ class FilingHistory
     /**
      * @return int
      */
-    public function getPages(): int
+    public function getPages(): ?int
     {
         return $this->pages;
     }
@@ -172,7 +172,7 @@ class FilingHistory
      *
      * @return FilingHistory
      */
-    public function setPages(int $pages): FilingHistory
+    public function setPages(int $pages = null): FilingHistory
     {
         $this->pages = $pages;
 
@@ -182,7 +182,7 @@ class FilingHistory
     /**
      * @return string
      */
-    public function getBarcode(): string
+    public function getBarcode(): ?string
     {
         return $this->barcode;
     }
@@ -192,7 +192,7 @@ class FilingHistory
      *
      * @return FilingHistory
      */
-    public function setBarcode(string $barcode): FilingHistory
+    public function setBarcode(string $barcode = null): FilingHistory
     {
         $this->barcode = $barcode;
 
@@ -302,7 +302,7 @@ class FilingHistory
     /**
      * @return string
      */
-    public function getSubcategory(): string
+    public function getSubcategory(): ?string
     {
         return $this->subcategory;
     }
@@ -312,7 +312,7 @@ class FilingHistory
      *
      * @return FilingHistory
      */
-    public function setSubcategory(string $subcategory): FilingHistory
+    public function setSubcategory(string $subcategory = null): FilingHistory
     {
         $this->subcategory = $subcategory;
 
