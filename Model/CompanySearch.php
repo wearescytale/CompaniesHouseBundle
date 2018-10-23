@@ -215,9 +215,9 @@ class CompanySearch
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getAddressSnippet(): string
+    public function getAddressSnippet(): ?string
     {
         return $this->addressSnippet;
     }
@@ -227,7 +227,7 @@ class CompanySearch
      *
      * @return CompanySearch
      */
-    public function setAddressSnippet(string $addressSnippet): CompanySearch
+    public function setAddressSnippet(?string $addressSnippet): CompanySearch
     {
         $this->addressSnippet = $addressSnippet;
 
